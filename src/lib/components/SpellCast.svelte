@@ -2,6 +2,7 @@
 	import dictionaryRaw from "$lib/assets/dictionary.txt?raw"
 	import { findWordsDFS } from "$lib/utils/GridSearch"
 	import { ExampleA } from "$lib/utils/ExampleData"
+	import type { RatedResult } from "$lib/utils/Types"
 
 	const dictionary = dictionaryRaw.split("\n").filter((w) => w.length > 1)
 	console.debug("dictionary length:", dictionary.length)
@@ -56,9 +57,15 @@
 
 	function onClickFindWords() {
 		console.time("findWords")
-		let results = findWordsDFS(grid, dictionary)
+		const results = findWordsDFS(grid, dictionary)
+		const ratedResults: RatedResult[] = results.map((result) => ({
+			word: result.word,
+			path: result.path,
+			score: [ ...result.word ].map((char) => getWeight(char)).reduce((prev, current) => prev + current),
+		})).sort((a, b) => b.score - a.score)
 		console.timeEnd("findWords")
-		console.debug("results:", results)
+
+		console.debug("ratedResults:", ratedResults)
 	}
 
 	$: {
