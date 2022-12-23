@@ -1,16 +1,4 @@
-export type Path = Point[]
-export type Grid = string[][]
-export type Dictionary = string[]
-
-export interface Point {
-	x: number
-	y: number
-}
-
-export interface Result {
-	word: string
-	path: Path
-}
+import type { Grid, Dictionary, Result, Path } from "$lib/utils/Types"
 
 export function findWordsDFS(grid: Grid, dictionary: Dictionary): Result[] {
 	const results: Result[] = []
