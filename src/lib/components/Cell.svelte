@@ -165,7 +165,7 @@
 	}
 
 	.tripleLetter {
-		box-shadow: 0 0 0 3px #fcc8a3;
+		box-shadow: 0 0 0 3px #d67040;
 	}
 
 	.x2multiplier {
