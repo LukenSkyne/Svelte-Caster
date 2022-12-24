@@ -31,6 +31,11 @@
 		display: flex;
 		flex-direction: column;
 		gap: 19px;
+
+		background: #000b19;
+		border-radius: 12px;
+		padding: 26px;
+		box-shadow: 0 0 0 8px #004f82, 0 0 0 16px #00c1db;
 	}
 
 	.row {

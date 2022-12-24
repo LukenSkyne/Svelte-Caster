@@ -25,7 +25,6 @@
 
 <style>
 	.resultContainer {
-		flex: 1 1 0;
 		height: 50%;
 		display: flex;
 		flex-direction: column;

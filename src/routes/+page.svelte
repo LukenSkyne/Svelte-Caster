@@ -99,7 +99,7 @@
 		align-items: center;
 		justify-content: center;
 
-		gap: 32px;
+		gap: 64px;
 	}
 
 	.actionWrapper {
@@ -109,7 +109,6 @@
 	}
 
 	.gameContainer {
-		flex: 1 1 0;
 		display: grid;
 		place-content: center;
 	}
