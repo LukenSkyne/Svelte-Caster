@@ -7,6 +7,11 @@ export interface Point {
 	y: number
 }
 
+export interface Line {
+	a: Point
+	b: Point
+}
+
 export interface Result {
 	word: string
 	path: Path

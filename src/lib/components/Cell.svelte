@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { grid, x2multiplier, doubleLetter, tripleLetter } from "$lib/utils/Store"
+	import { grid, x2multiplier, doubleLetter, tripleLetter, selectedPath } from "$lib/utils/Store"
 	import { getWeight, pointEquals } from "$lib/utils/GameLogic"
 	import { cubicInOut } from "svelte/easing"
 	import { scale } from "svelte/transition"
@@ -13,6 +13,13 @@
 	$: isTripleLetter = pointEquals({ x, y }, $tripleLetter)
 	$: letterMultiplier = isTripleLetter ? 3 : isDoubleLetter ? 2 : 1
 	$: weight = getWeight(cell) * letterMultiplier
+	let isSelected = false
+
+	$: if ($selectedPath !== undefined) {
+		isSelected = $selectedPath.some((p) => {
+			return pointEquals(p, { x, y })
+		})
+	}
 
 	function focusNextSibling(element) {
 		const n = element.parentElement.nextElementSibling
@@ -65,7 +72,7 @@
 	}
 </script>
 
-<div class="cell" class:x2={isX2}>
+<div class="cell" class:x2={isX2} class:selected={isSelected}>
 	<input value={cell}
 		   on:input={onInput}
 		   on:focus={onFocus}
@@ -108,23 +115,50 @@
 		background-clip: content-box, border-box;
 		box-shadow: inset 0 calc(-1px / 4) 0 calc(1px / 4) var(--edge-color);
 
-		transition: box-shadow 0.2s ease-out;
+		transition: scale 0.2s ease-out;
 	}
 
 	.x2 {
 		box-shadow: inset 0 calc(-1px / 4) 0 calc(1px / 4) var(--edge-color), 0 0 0 5px #ff23eb;
 	}
 
+	.selected {
+		--selected-border: #004ea2;
+		--selected-border-hl: #0079db;
+		--selected-bg: #00b5de;
+		--selected-bg-hl: #00d6e4;
+
+		scale: 0.9;
+		color: #fff;
+		background-image: linear-gradient(
+				130deg,
+				var(--selected-bg) 40%,
+				var(--selected-bg-hl) 40%,
+				var(--selected-bg-hl) 62%,
+				var(--selected-bg) 62%
+		),
+		linear-gradient(
+				130deg,
+				var(--selected-border) 40%,
+				var(--selected-border-hl) 40%,
+				var(--selected-border-hl) 62%,
+				var(--selected-border) 62%
+		);
+	}
+
 	.char {
 		width: 42px;
 		aspect-ratio: 1;
 
+		background: none;
+		color: currentColor;
+
 		border: none;
 		outline: none;
 		font-size: 40px;
+		font-weight: 900;
 		text-align: center;
 		font-family: inherit;
-		font-weight: 900;
 		text-transform: uppercase;
 	}
 

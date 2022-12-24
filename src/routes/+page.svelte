@@ -16,6 +16,10 @@
 	let ratedResults: RatedResult[] = []
 
 	function onClickFindWords() {
+		if ($grid === undefined) {
+			return
+		}
+
 		console.time("findWords")
 		const results = findWordsDFS($grid, dictionary)
 		ratedResults = results.map((result) => {
@@ -42,7 +46,7 @@
 		console.debug("ratedResults:", ratedResults)
 	}
 
-	$: if ($grid !== undefined) {
+	$: {
 		$x2multiplier
 		$doubleLetter
 		$tripleLetter
@@ -59,7 +63,7 @@
 	<!--		<Button text="Find Words" action={onClickFindWords} />-->
 	<!--	</div>-->
 
-	<div class="gameContainer">
+	<div class="gameWrapper">
 		<SpellCast />
 	</div>
 	<ResultDrawer {ratedResults} />
@@ -108,7 +112,7 @@
 		left: 16px;
 	}
 
-	.gameContainer {
+	.gameWrapper {
 		display: grid;
 		place-content: center;
 	}
