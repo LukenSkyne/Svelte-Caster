@@ -6,7 +6,7 @@ export function findWordsDFS(grid: Grid, dictionary: Dictionary): Result[] {
 	const height = grid.length - 1
 
 	function visitCell(x: number, y: number, path: Path, dict: Dictionary) {
-		if (x < 0 || x > width || y < 0 || y > height) {
+		if (x < 0 || x > width || y < 0 || y > height || grid[y][x] === "") {
 			return
 		}
 
