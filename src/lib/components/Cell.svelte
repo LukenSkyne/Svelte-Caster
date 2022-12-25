@@ -35,24 +35,14 @@
 	}
 
 	function onInput(e) {
-		if (e.data === "1") {
-			if (!isX2) {
-				$x2multiplier = { x, y }
-			} else {
-				$x2multiplier = undefined
-			}
-		} else if (e.data === "2") {
-			if (!isDoubleLetter) {
-				$doubleLetter = { x, y }
-			} else {
-				$doubleLetter = undefined
-			}
-		} else if (e.data === "3") {
-			if (!isTripleLetter) {
-				$tripleLetter = { x, y }
-			} else {
-				$tripleLetter = undefined
-			}
+		const t1 = e.data === "1"
+		const t2 = e.data === "2"
+		const t3 = e.data === "3"
+
+		if (t1 || t2 || t3) {
+			$x2multiplier = isX2 ? undefined : (!t1 ? $x2multiplier : { x, y })
+			$doubleLetter = isDoubleLetter ? undefined : (!t2 ? $doubleLetter : { x, y })
+			$tripleLetter = isTripleLetter ? undefined : (!t3 ? $tripleLetter : { x, y })
 		}
 
 		if (e.data.match(/[a-z]/i) !== null) {
