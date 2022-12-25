@@ -55,7 +55,7 @@
 </script>
 
 <svelte:head>
-	<title>SpellCaster</title>
+	<title>SvelteCaster</title>
 </svelte:head>
 
 <div class="container">
