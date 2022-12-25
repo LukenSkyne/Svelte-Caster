@@ -1,22 +1,36 @@
-# create-svelte
+<p align="center" style="text-align: center">
+  <a href="https://github.com/LukenSkyne/Svelte-Caster">
+    <img alt="Svelte-Caster Logo" src="./static/favicon.png" width="128" height="128" />
+  </a>
+</p>
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+<h3 align="center">SvelteCaster</h3>
+<p align="center">
+    the trusted source to flex vocabulary on your friends
+</p>
 
-## Creating a project
+<div align="center">
 
-If you're seeing this, you've probably already done this step. Congrats!
+<a href="https://github.com/LukenSkyne/Svelte-Caster/blob/main/LICENSE">![MIT License](https://img.shields.io/github/license/LukenSkyne/Svelte-Caster)</a>
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+</div>
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+## About
 
-## Developing
+Sometimes I really want to know what other words would've been possible.
+This app uses a slightly transformed version of [aspell.net](http://app.aspell.net/create?max_size=70&spelling=US&max_variant=0&diacritic=strip&download=wordlist&encoding=utf-8&format=inline)'s dictionary for english words.
+I'm still finding invalid words occasionally, so if you know the exact dictionary the Game uses, please consider opening an issue!
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Gallery
+
+The following screenshot shows what the App looks like after entering all letters and the modifiers.
+It's intended to look very closely to the original game, I hope you like it!
+
+<img src=".github/example-round-screenshot.png" alt="Example Round">
+
+## Developing / Running the app
+
+Once you've installed dependencies with `npm install` (or `pnpm install` or `yarn`), you can start a development server:
 
 ```bash
 npm run dev
@@ -24,15 +38,3 @@ npm run dev
 # or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
