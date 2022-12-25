@@ -1,6 +1,6 @@
 <p align="center" style="text-align: center">
   <a href="https://github.com/LukenSkyne/Svelte-Caster">
-    <img alt="Svelte-Caster Logo" src="./static/favicon.png" width="128" height="128" />
+    <img alt="Svelte-Caster Logo" src=".github/svelte-caster-logo.png" width="128" height="128" />
   </a>
 </p>
 
