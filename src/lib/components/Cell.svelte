@@ -115,7 +115,8 @@
 		background-clip: content-box, border-box;
 		box-shadow: inset 0 calc(-1px / 4) 0 calc(1px / 4) var(--edge-color);
 
-		transition: scale 0.2s ease-out;
+		transition: all 0.2s ease-out;
+		transition-property: scale, box-shadow;
 	}
 
 	.x2 {
