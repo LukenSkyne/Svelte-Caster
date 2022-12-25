@@ -69,19 +69,19 @@
 <style>
 	@font-face {
 		font-family: Satoshi;
-		src: url(fonts/Satoshi-Regular.otf);
+		src: url(/fonts/Satoshi-Regular.otf);
 		font-weight: 400;
 	}
 
 	@font-face {
 		font-family: Satoshi;
-		src: url(fonts/Satoshi-Bold.otf);
+		src: url(/fonts/Satoshi-Bold.otf);
 		font-weight: 700;
 	}
 
 	@font-face {
 		font-family: Satoshi;
-		src: url(fonts/Satoshi-Black.otf);
+		src: url(/fonts/Satoshi-Black.otf);
 		font-weight: 900;
 	}
 
