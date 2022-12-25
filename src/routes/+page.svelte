@@ -3,23 +3,19 @@
 	import Button from "$lib/components/Button.svelte"
 
 	import { doubleLetter, grid, tripleLetter, x2multiplier } from "$lib/utils/Store"
-	import { getWeight, getWeightEx, pointEquals } from "$lib/utils/GameLogic"
+	import { getWeightEx, pointEquals } from "$lib/utils/GameLogic"
 	import { findWordsDFS } from "$lib/utils/GridSearch"
 	import type { RatedResult } from "$lib/utils/Types"
 
 	import dictionaryRaw from "$lib/assets/dictionary.txt?raw"
 	import ResultDrawer from "$lib/components/ResultDrawer.svelte"
 
-	const dictionary = dictionaryRaw.split("\n").filter((w) => w.length > 1)
+	const dictionary = dictionaryRaw.split(/\r\n?/g).filter((w) => w.length > 1)
 	console.debug("dictionary length:", dictionary.length)
 
 	let ratedResults: RatedResult[] = []
 
 	function onClickFindWords() {
-		if ($grid === undefined) {
-			return
-		}
-
 		console.time("findWords")
 		const results = findWordsDFS($grid, dictionary)
 		ratedResults = results.map((result) => {
@@ -46,7 +42,7 @@
 		console.debug("ratedResults:", ratedResults)
 	}
 
-	$: {
+	$: if ($grid !== undefined) {
 		$x2multiplier
 		$doubleLetter
 		$tripleLetter

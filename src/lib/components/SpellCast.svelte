@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Empty, ExampleA } from "$lib/utils/ExampleData"
-	import { grid, x2multiplier, doubleLetter, tripleLetter, selectedPath } from "$lib/utils/Store"
+	import { grid, selectedPath } from "$lib/utils/Store"
 	import Cell from "$lib/components/Cell.svelte"
 	import type { Line, Point } from "$lib/utils/Types"
 
