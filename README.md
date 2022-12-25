@@ -38,3 +38,7 @@ npm run dev
 # or start the server and open the app in a new browser tab
 npm run dev -- --open
 ```
+
+You can enter letters by clicking into a cell.
+By entering 1, you set the current cell to a 2X modifier.
+Entering 2 or 3 sets the cell to either a double or triple letter multiplier.
