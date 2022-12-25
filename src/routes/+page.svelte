@@ -5,7 +5,7 @@
 	import { doubleLetter, grid, tripleLetter, x2multiplier } from "$lib/utils/Store"
 	import { getWeightEx, pointEquals } from "$lib/utils/GameLogic"
 	import { findWordsDFS } from "$lib/utils/GridSearch"
-	import type { RatedResult } from "$lib/utils/Types"
+	import type { RatedResult, Result } from "$lib/utils/Types"
 
 	import dictionaryRaw from "$lib/assets/dictionary.txt?raw"
 	import ResultDrawer from "$lib/components/ResultDrawer.svelte"
@@ -13,11 +13,20 @@
 	const dictionary = dictionaryRaw.split(/\r\n?/g).filter((w) => w.length > 1)
 	console.debug("dictionary length:", dictionary.length)
 
+	let results: Result[] = []
 	let ratedResults: RatedResult[] = []
 
-	function onClickFindWords() {
+	$: if ($grid !== undefined) {
 		console.time("findWords")
-		const results = findWordsDFS($grid, dictionary)
+		results = findWordsDFS($grid, dictionary)
+		console.timeEnd("findWords")
+	}
+
+	$: if (results.length > 0) {
+		$x2multiplier
+		$doubleLetter
+		$tripleLetter
+
 		ratedResults = results.map((result) => {
 			let score = result.path
 					.map((p) => getWeightEx(p))
@@ -37,16 +46,8 @@
 				score,
 			}
 		}).sort((a, b) => b.score - a.score)
-		console.timeEnd("findWords")
 
 		console.debug("ratedResults:", ratedResults)
-	}
-
-	$: if ($grid !== undefined) {
-		$x2multiplier
-		$doubleLetter
-		$tripleLetter
-		onClickFindWords()
 	}
 </script>
 
