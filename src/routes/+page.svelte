@@ -1,22 +1,24 @@
 <script lang="ts">
 	import SpellCast from "$lib/components/SpellCast.svelte"
-	import Button from "$lib/components/Button.svelte"
 
 	import { doubleLetter, grid, tripleLetter, x2multiplier } from "$lib/utils/Store"
 	import { getWeightEx, pointEquals } from "$lib/utils/GameLogic"
 	import { findWordsDFS } from "$lib/utils/GridSearch"
+	import ResultDrawer from "$lib/components/ResultDrawer.svelte"
+	import dictionaryRaw from "$lib/assets/dictionary.txt?raw"
 	import type { RatedResult, Result } from "$lib/utils/Types"
 
-	import dictionaryRaw from "$lib/assets/dictionary.txt?raw"
-	import ResultDrawer from "$lib/components/ResultDrawer.svelte"
+	let results: Result[]
+	let ratedResults: RatedResult[] = []
 
 	const dictionary = dictionaryRaw.split(/\r\n?/g).filter((w) => w.length > 1)
 	console.debug("dictionary length:", dictionary.length)
 
-	let results: Result[] = []
-	let ratedResults: RatedResult[] = []
+	$: {
+		console.table($grid)
+	}
 
-	$: if ($grid !== undefined) {
+	$: {
 		console.time("findWords")
 		results = findWordsDFS($grid, dictionary)
 		console.timeEnd("findWords")

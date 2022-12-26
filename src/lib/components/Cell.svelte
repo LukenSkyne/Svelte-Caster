@@ -57,8 +57,8 @@
 		e.target.value = ""
 	}
 
-	function onBlur(cell) {
-		return (e) => e.target.value = cell
+	function onBlur(e) {
+		e.target.value = cell
 	}
 </script>
 
@@ -66,7 +66,7 @@
 	<input value={cell}
 		   on:input={onInput}
 		   on:focus={onFocus}
-		   on:blur={onBlur(cell)}
+		   on:blur={onBlur}
 		   class="char"
 	>
 	{#if weight !== 0}

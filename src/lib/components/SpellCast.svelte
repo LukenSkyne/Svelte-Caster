@@ -1,10 +1,7 @@
 <script lang="ts">
-	import { Empty, ExampleA } from "$lib/utils/ExampleData"
 	import { grid, selectedPath } from "$lib/utils/Store"
 	import Cell from "$lib/components/Cell.svelte"
 	import type { Line, Point } from "$lib/utils/Types"
-
-	$grid = Empty
 
 	let svgCanvas: SVGElement | undefined
 	let lines: Line[] = []
@@ -35,10 +32,6 @@
 				b: centerB,
 			})
 		}
-	}
-
-	$: {
-		console.table($grid)
 	}
 </script>
 
