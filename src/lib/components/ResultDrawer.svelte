@@ -24,7 +24,7 @@
 
 <div class="resultContainer">
 	{#if ratedResults.length === 0}
-		<div class="result">No Results Yet</div>
+		<div class="result" transition:scale={{ duration: 200, easing: cubicInOut }}>No Results Yet</div>
 	{:else}
 		{#each ratedResults.slice(0, 10) as res, index}
 			<div class="result"
