@@ -69,17 +69,21 @@
 		   on:blur={onBlur(cell)}
 		   class="char"
 	>
-	<div class="weight">{weight}</div>
+	{#if weight !== 0}
+		<div class="weight">
+			{weight}
+		</div>
+	{/if}
 	{#if isX2}
-		<div transition:scale={{ duration: 200, easing: cubicInOut }} class="multiLetter x2multiplier">
+		<div class="multiLetter x2multiplier" transition:scale={{ duration: 200, easing: cubicInOut }}>
 			2X
 		</div>
 	{:else if isTripleLetter}
-		<div transition:scale={{ duration: 200, easing: cubicInOut }} class="multiLetter tripleLetter">
+		<div class="multiLetter tripleLetter" transition:scale={{ duration: 200, easing: cubicInOut }}>
 			TL
 		</div>
 	{:else if isDoubleLetter}
-		<div transition:scale={{ duration: 200, easing: cubicInOut }} class="multiLetter doubleLetter">
+		<div class="multiLetter doubleLetter" transition:scale={{ duration: 200, easing: cubicInOut }}>
 			DL
 		</div>
 	{/if}
@@ -159,13 +163,6 @@
 		bottom: 1px;
 		pointer-events: none;
 		user-select: none;
-	}
-
-	.x2multiplier {
-		position: absolute;
-		top: 6px;
-		right: 1px;
-		pointer-events: none;
 	}
 
 	.multiLetter {
