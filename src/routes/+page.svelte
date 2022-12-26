@@ -24,7 +24,7 @@
 		console.timeEnd("findWords")
 	}
 
-	$: if (results.length > 0) {
+	$: {
 		$x2multiplier
 		$doubleLetter
 		$tripleLetter

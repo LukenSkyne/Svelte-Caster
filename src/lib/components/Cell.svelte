@@ -13,13 +13,7 @@
 	$: isTripleLetter = pointEquals({ x, y }, $tripleLetter)
 	$: letterMultiplier = isTripleLetter ? 3 : isDoubleLetter ? 2 : 1
 	$: weight = getWeight(cell) * letterMultiplier
-	let isSelected = false
-
-	$: if ($selectedPath !== undefined) {
-		isSelected = $selectedPath.some((p) => {
-			return pointEquals(p, { x, y })
-		})
-	}
+	$: isSelected = ($selectedPath !== undefined) && $selectedPath.some((p) => pointEquals(p, { x, y }))
 
 	function focusNextSibling(element) {
 		const n = element.parentElement.nextElementSibling
@@ -31,6 +25,12 @@
 			m.firstElementChild.firstElementChild.focus()
 		} else {
 			element.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.firstElementChild.focus()
+		}
+	}
+
+	function onKeyDown(e) {
+		if (e.keyCode === 8 || e.keyCode === 46) {
+			e.target.value = $grid[y][x] = ""
 		}
 	}
 
@@ -64,6 +64,7 @@
 
 <div class="cell" class:x2={isX2} class:selected={isSelected}>
 	<input value={cell}
+		   on:keydown={onKeyDown}
 		   on:input={onInput}
 		   on:focus={onFocus}
 		   on:blur={onBlur}

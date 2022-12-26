@@ -4,7 +4,7 @@
 	import type { Line, Point } from "$lib/utils/Types"
 
 	let svgCanvas: SVGElement | undefined
-	let lines: Line[] = []
+	let lines: Line[]
 
 	function getCellCenter(point: Point, cells, rect: DOMRect): Point {
 		const cellIndex = (point.y * $grid.length) + point.x
@@ -32,6 +32,8 @@
 				b: centerB,
 			})
 		}
+	} else {
+		lines = []
 	}
 </script>
 
