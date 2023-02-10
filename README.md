@@ -19,7 +19,6 @@
 
 Sometimes I really want to know what other words would've been possible.
 This app uses a slightly transformed version of [aspell.net](http://app.aspell.net/create?max_size=70&spelling=US&max_variant=0&diacritic=strip&download=wordlist&encoding=utf-8&format=inline)'s dictionary for english words.
-I'm still finding invalid words occasionally, so if you know the exact dictionary the Game uses, please consider opening an issue!
 
 ## Gallery
 
@@ -42,3 +41,6 @@ npm run dev -- --open
 You can enter letters by clicking into a cell.
 By entering 1, you set the current cell to a 2X modifier.
 Entering 2 or 3 sets the cell to either a double or triple letter multiplier.
+
+## Credits
+- [dictionary.txt](https://github.com/jacksonrayhamilton/wordlist-english)
