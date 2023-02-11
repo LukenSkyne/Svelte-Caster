@@ -42,5 +42,6 @@ You can enter letters by clicking into a cell.
 By entering 1, you set the current cell to a 2X modifier.
 Entering 2 or 3 sets the cell to either a double or triple letter multiplier.
 
-## Credits
-- [dictionary.txt](https://github.com/jacksonrayhamilton/wordlist-english)
+## Acknowledgements
+- SCOWL (And Friends) for providing the [generator](http://app.aspell.net/create) which was used for the initial wordlist
+- [Jackson Ray Hamilton](https://github.com/jacksonrayhamilton/wordlist-english) for additional words
