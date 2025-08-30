@@ -58,10 +58,6 @@
 </svelte:head>
 
 <div class="container">
-	<!--	<div class="actionWrapper">-->
-	<!--		<Button text="Find Words" action={onClickFindWords} />-->
-	<!--	</div>-->
-
 	<div class="gameWrapper">
 		<SpellCast />
 	</div>
@@ -103,12 +99,6 @@
 		justify-content: center;
 
 		gap: 64px;
-	}
-
-	.actionWrapper {
-		position: absolute;
-		top: 16px;
-		left: 16px;
 	}
 
 	.gameWrapper {
