@@ -4,15 +4,22 @@
 	import { scale } from "svelte/transition"
 	import { selectedPath } from "$lib/utils/Store"
 
-	export let ratedResults: RatedResult[]
-	let selected = 0
-
-	$: if (ratedResults.length > 0) {
-		$selectedPath = ratedResults[0].path
-		selected = 0
-	} else {
-		$selectedPath = undefined
+	interface Props {
+		ratedResults: RatedResult[]
 	}
+
+	let { ratedResults }: Props = $props()
+
+	let selected = $state(0)
+
+	$effect(() => {
+		if (ratedResults.length > 0) {
+			$selectedPath = ratedResults[0].path
+			selected = 0
+		} else {
+			$selectedPath = undefined
+		}
+	})
 
 	function onClickResult(res: Result, index: number) {
 		return () => {

@@ -1,5 +1,5 @@
 import type { Point } from "$lib/utils/Types"
-import { grid, doubleLetter, tripleLetter } from "$lib/utils/Store"
+import { grid } from "$lib/utils/Store"
 import { get } from "svelte/store"
 
 export function getWeight(char: string): number {
@@ -27,9 +27,9 @@ export function getWeight(char: string): number {
 	return -1
 }
 
-export function getWeightEx(p: Point): number {
+export function getWeightEx(p: Point, doubleLetter?: Point, tripleLetter?: Point): number {
 	const char = get(grid)[p.y][p.x]
-	const multiplier = pointEquals(p, get(tripleLetter)) ? 3 : pointEquals(p, get(doubleLetter)) ? 2 : 1
+	const multiplier = pointEquals(p, tripleLetter) ? 3 : pointEquals(p, doubleLetter) ? 2 : 1
 
 	return getWeight(char) * multiplier
 }

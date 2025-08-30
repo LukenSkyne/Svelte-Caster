@@ -4,9 +4,8 @@
 	import type { Line, Point } from "$lib/utils/Types"
 
 	let svgCanvas: SVGElement | undefined
-	let lines: Line[]
 
-	function getCellCenter(point: Point, cells, rect: DOMRect): Point {
+	function getCellCenter(point: Point, cells: NodeListOf<Element>, rect: DOMRect): Point {
 		const cellIndex = (point.y * $grid.length) + point.x
 		const cellRect = cells[cellIndex].getBoundingClientRect()
 
@@ -16,10 +15,14 @@
 		}
 	}
 
-	$: if ($selectedPath !== undefined && svgCanvas !== undefined) {
+	const lines: Line[] = $derived.by(() => {
+		if ($selectedPath === undefined || svgCanvas === undefined) {
+			return []
+		}
+
+		const lines = []
 		const cells = document.querySelectorAll(".cell")
 		const svgRect = svgCanvas?.getBoundingClientRect()
-		lines = []
 
 		for (let i = 0; ++i < $selectedPath.length;) {
 			const a = $selectedPath[i - 1]
@@ -32,9 +35,9 @@
 				b: centerB,
 			})
 		}
-	} else {
-		lines = []
-	}
+
+		return lines
+	})
 </script>
 
 <div class="gameContainer">

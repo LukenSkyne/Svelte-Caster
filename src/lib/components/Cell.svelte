@@ -4,16 +4,20 @@
 	import { cubicInOut } from "svelte/easing"
 	import { scale } from "svelte/transition"
 
-	export let cell: string
-	export let x: number
-	export let y: number
+	interface Props {
+		cell: string
+		x: number
+		y: number
+	}
 
-	$: isX2 = pointEquals({ x, y }, $x2multiplier)
-	$: isDoubleLetter = pointEquals({ x, y }, $doubleLetter)
-	$: isTripleLetter = pointEquals({ x, y }, $tripleLetter)
-	$: letterMultiplier = isTripleLetter ? 3 : isDoubleLetter ? 2 : 1
-	$: weight = getWeight(cell) * letterMultiplier
-	$: isSelected = ($selectedPath !== undefined) && $selectedPath.some((p) => pointEquals(p, { x, y }))
+	let { cell, x, y }: Props = $props()
+
+	const isX2 = $derived(pointEquals({ x, y }, $x2multiplier))
+	const isDoubleLetter = $derived(pointEquals({ x, y }, $doubleLetter))
+	const isTripleLetter = $derived(pointEquals({ x, y }, $tripleLetter))
+	const letterMultiplier = $derived(isTripleLetter ? 3 : isDoubleLetter ? 2 : 1)
+	const weight = $derived(getWeight(cell) * letterMultiplier)
+	const isSelected = $derived(($selectedPath !== undefined) && $selectedPath.some((p) => pointEquals(p, { x, y })))
 
 	function focusNextSibling(element) {
 		const n = element.parentElement.nextElementSibling
@@ -64,10 +68,10 @@
 
 <div class="cell" class:x2={isX2} class:selected={isSelected}>
 	<input value={cell}
-		   on:keydown={onKeyDown}
-		   on:input={onInput}
-		   on:focus={onFocus}
-		   on:blur={onBlur}
+		   onkeydown={onKeyDown}
+		   oninput={onInput}
+		   onfocus={onFocus}
+		   onblur={onBlur}
 		   class="char"
 	>
 	{#if weight !== 0}

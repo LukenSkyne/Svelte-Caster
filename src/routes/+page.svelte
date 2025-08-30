@@ -8,30 +8,27 @@
 	import dictionaryRaw from "$lib/assets/dictionary.txt?raw"
 	import type { RatedResult, Result } from "$lib/utils/Types"
 
-	let results: Result[]
-	let ratedResults: RatedResult[] = []
-
 	const dictionary = dictionaryRaw.split(/\r\n?/g).filter((w) => w.length > 1)
 	console.debug("dictionary length:", dictionary.length)
 
-	$: {
+	const results: Result[] = $derived.by(() => {
 		console.table($grid)
-	}
 
-	$: {
 		console.time("findWords")
-		results = findWordsDFS($grid, dictionary)
+		const res = findWordsDFS($grid, dictionary)
 		console.timeEnd("findWords")
-	}
 
-	$: {
-		$x2multiplier
-		$doubleLetter
-		$tripleLetter
+		return res
+	})
 
-		ratedResults = results.map((result) => {
+	const ratedResults: RatedResult[] = $derived.by(() => {
+		if (results === undefined) {
+			return []
+		}
+
+		return results.map((result) => {
 			let score = result.path
-					.map((p) => getWeightEx(p))
+					.map((p) => getWeightEx(p, $doubleLetter, $tripleLetter))
 					.reduce((prev, current) => prev + current)
 
 			if (result.path.findIndex((p) => pointEquals(p, $x2multiplier)) !== -1) {
@@ -47,10 +44,8 @@
 				path: result.path,
 				score,
 			}
-		}).sort((a, b) => b.score - a.score)
-
-		console.debug("ratedResults:", ratedResults)
-	}
+		}).toSorted((a, b) => b.score - a.score)
+	})
 </script>
 
 <svelte:head>
